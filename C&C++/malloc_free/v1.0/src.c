@@ -1,6 +1,6 @@
 #include <stddef.h>
-#include<stdio.h>
-#include<errno.h>
+#include <stdio.h>
+#include <errno.h>
 
 #define HEAP_SIZE 1048576
 
@@ -10,17 +10,14 @@ typedef struct block{
     struct block *next;
 } block_t;
 
-
-
-
 static char heap[HEAP_SIZE];
 static block_t *head = (block_t *)heap;
-static long freeSize;
+static long freeSize; // Useless in our case
 
 void init_heap();
 void *my_malloc(int size);
 void my_free(void* ptr);
-void loger(block_t *blc);
+//void loger(block_t *blc);
 block_t *findFree(int);
 
 
@@ -44,20 +41,22 @@ void init_heap() {
     head->free = 1;
     head->next = NULL;
 }
-
+/*
 void loger(block_t *blc)
 {
     printf("%zu\t%d\t%p\n",blc->size,blc->free,blc->next);
-}
+}*/
 
 void *my_malloc(int size)
 {
     block_t *t;
 
-    if(head->next==NULL)
+    if(head->next==NULL)    // Overwriting without presrving free space
     {
         head->size=size;
         head->free=0;
+        // Pointer Arithmetic Error
+        // Head must be cast as (char *) before casting as  (block_t *) - bit-wise Arithmetic (and so on for others)
         head->next=(block_t *)heap+sizeof(block_t)+size+1;
 
         freeSize-=(sizeof(block_t)+size);
@@ -80,7 +79,7 @@ void *my_malloc(int size)
         t->next=(block_t *)t+size+sizeof(block_t)+1;
 
         freeSize-=(sizeof(block_t)+size);
-        head->next->size=freeSize;
+        head->next->size=freeSize; // Wrong! might not be last block
 
         return t+sizeof(block_t)+1;
     }
