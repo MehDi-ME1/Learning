@@ -18,3 +18,7 @@ But open for developments.
 
 ### Implementation
 You only need a gcc compiler. It is not OS dependent. Compile and run.
+
+### What to Learn
+This simple project mostly tries to show user about fonctionality of memory management in C.
+So understanding this piece of code, Can help with writing more efficient codes aiming for memory management.
