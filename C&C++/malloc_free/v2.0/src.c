@@ -106,8 +106,5 @@ int main() {
         my_free(iptr);
     }
 
-    // After free, accessing iptr would be undefined behavior, so don't do it.
-    // printf("%d\n", *iptr); // This would cause segmentation fault
-
     return 0;
 }
