@@ -7,4 +7,4 @@ However, the project doesn't support many features like signal hadling etc. The 
 in next version of the project.
 
 #### Note
-The source file itself involved with documentation that will explain almost everything in the code.
+**The source file itself involved with documentation that will explain almost everything in the code.**
