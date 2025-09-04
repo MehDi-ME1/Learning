@@ -12,9 +12,12 @@
 
 int main()
 {
+    // input array to recive and store entered string in the consol.
     char input[MAX_INPUT_SIZE];
+    // args is a array of pointers, input value will be separated by space and store in this array.
     char *args[MAX_ARGS];
     char *token;
+    // The pid variabe holds child process id.
     pid_t pid;
     int status;
 
@@ -23,7 +26,7 @@ int main()
         // Just like printf() but colorful, A red colored $ will appear - NULL value is for background argument
         colprint("$ ","red",NULL);  //printf("$ "); Can be replaced(comment the color.h header)
         fflush(stdout);
-
+        // This conditional statement is a part of error handling, in case user inserted a NULL.
         if(fgets(input , sizeof(input) , stdin) == NULL)
         {
             break; // Breaks when input is null
